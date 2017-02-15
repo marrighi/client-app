@@ -126,7 +126,7 @@ public class QuickTrainingServlet extends HttpServlet {
                 signatures.add(index, request.getParameter("_AuthentestSignature"));
                 remaining--;
                 index++;
-                request.getSession().setAttribute("msg", "Please insert your data "+remaining+" more time");
+                request.getSession().setAttribute("msg", "Please insert your data "+remaining+" more times");
                 request.getSession().setAttribute("remainingSignatures", String.valueOf(remaining));
                 request.getSession().setAttribute("index", Integer.valueOf(index));
                 request.getSession().setAttribute("signatures", signatures);

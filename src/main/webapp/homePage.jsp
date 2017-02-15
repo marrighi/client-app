@@ -1,6 +1,5 @@
 <%-- 
-    Document   : homePage
-    Created on : 14/06/2010, 14:20:18
+
     Author     : santiago
 --%>
 

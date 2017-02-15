@@ -1,6 +1,5 @@
 <%--
-    Document   : newPatternQuestion
-    Created on : 05/07/2011
+
     Author     : fcontigliani
 --%>
 

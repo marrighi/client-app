@@ -13,7 +13,7 @@ public class Main {
     
     public static void main(String[] args) throws Exception {
     	PropertiesConfiguration config = new PropertiesConfiguration("application.properties");
-    	AuthenwareConfig ac = AuthenwareConfig.instance;
+    	AuthenwareConfig ac = AuthenwareConfig.getInstance();
     	ac.setAPM_URL(config.getString("APM_URL"));
     	ac.setCORE_URL(config.getString("CORE_URL"));
     	ac.setWRAP_URL(config.getString("WRAP_URL"));

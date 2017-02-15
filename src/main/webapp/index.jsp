@@ -8,11 +8,14 @@
 
 <html>
     <head>
+ <!--
         <script src="client.js" type="text/javascript"></script>
-        <script type="text/javascript">
+  -->
+         <script type="text/javascript">
+
         <%
 
-/*
+
             try{
                 WRAPServicesClient wrapServicesClient= new WRAPServicesClient();
                 out.print(wrapServicesClient.getOTJ());
@@ -22,7 +25,7 @@
                 response.sendRedirect("error.jsp");
             }
 
-*/
+
         %>
        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,7 +56,6 @@
         <form action="LoginPageServlet" method="post" onsubmit="sendFields();" autocomplete="off">
         <table>
             <tr>
-                <!-- Remember, the id of user and password must match the definition in the admin.  -->
                 <td>Username</td><td><input type="text" name="username" id="username" onPaste="return false"></td>
             </tr>
             <tr>
