@@ -6,6 +6,8 @@
 package control;
 
 import java.util.Iterator;
+
+import model.AuthenwareConfig;
 import model.User;
 import model.UsersDummy;
 
@@ -24,14 +26,18 @@ public class Security {
 
     public boolean isAValidUser(String username, String password) {
 
-        for (Iterator user = systemUsers.getUsers().iterator(); user.hasNext();) {
-            User actual = (User) user.next();
-            if(username.equals(actual.getUsername()) && password.endsWith(actual.getPassword())) {
-                return true;
-            }
-
-        }
+        if (AuthenwareConfig.getInstance().isUserValidation()){
+	    	for (Iterator<User> user = systemUsers.getUsers().iterator(); user.hasNext();) {
+	            User actual = (User) user.next();
+	            if(username.equals(actual.getUsername()) && password.endsWith(actual.getPassword())) {
+	                return true;
+	            }
+	
+	        }
         return false;
+        } else {
+        	return true;
+        }
     }
 
 

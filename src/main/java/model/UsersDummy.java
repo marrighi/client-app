@@ -6,7 +6,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 
 
@@ -20,11 +22,6 @@ public class UsersDummy {
 
     public UsersDummy(){
         users = new ArrayList<User>();
-        users.add(new User("danielcaselles","danielcaselles", "2011-07-20 10:55:00","danyel.caselles@gmail.com"));
-        users.add(new User("dcaselles","danielcaselles", "2011-08-12 11:25:00","danyel.caselles@gmail.com"));
-        users.add(new User("integrado","sinproblemas", "2003-03-14 08:00:00","danyel.caselles@gmail.com"));
-         users.add(new User("testing","testing", "2003-03-14 08:00:00","jeremiascastillo@gmail.com"));
-        users.add(new User("test","test", "2003-03-14 08:00:00","marrighi@gmail.com"));
     }
 
    public static UsersDummy getInstance(){
@@ -33,13 +30,19 @@ public class UsersDummy {
    }
     
     public User getUser(String username){
-        for (Iterator user = users.iterator(); user.hasNext();) {
+    	
+    	for (Iterator<User> user = users.iterator(); user.hasNext();) {
             User currentUser = (User) user.next();
             if(username.equals(currentUser.getUsername() )) {
                 return currentUser;
             }
         }
-        return null;
+    	// if it is not validating, then create a phantom user, so it can be found by the method if it not exist
+        if (!AuthenwareConfig.getInstance().isUserValidation()){
+        	return addDummyUser(username);
+        } else {
+        	return null;
+        }
     }
 
 
@@ -57,5 +60,17 @@ public class UsersDummy {
         this.users = users;
     }
 
+    public void addUser (String[] userString){
+    	User u = new User(userString[0],userString[1],userString[2],userString[3]);
+    	users.add(u);
+    	System.out.println("user: "+ u.getUsername()+ " has been created");
+    }
+    public User addDummyUser (String username){
+    	User firstUser = users.get(0);
+    	User u = new User(username,firstUser.getPassword(),firstUser.getCredentialLastSet(),firstUser.getEmail());
+    	users.add(u);
+    	System.out.println("Dummy User: "+ u.getUsername()+ " has been created");
+    	return u;
+    }
 
 }

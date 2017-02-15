@@ -17,6 +17,8 @@ public class AuthenwareConfig {
     private String APM_URL ;
     private String WRAP_URL;
     private String CORE_URL;
+    // If it's set to false, then you can write anything in user and password
+    private boolean userValidation;
 
     public static AuthenwareConfig instance;
 
@@ -27,6 +29,8 @@ public class AuthenwareConfig {
           this.APM_URL = "http://192.168.1.119:8080/authenware-apm/AuthenwareApmService?wsdl ";
           this.WRAP_URL = "http://192.168.1.119:8080/authenware-wrap/AuthenwareWrapService?wsdl";
           this.CORE_URL = "http://192.168.1.119:8080/authenware-core/AuthenwareCoreService?wsdl"; 
+          this.userValidation = true;
+          
     }
 
     public static AuthenwareConfig getInstance(){
@@ -100,7 +104,21 @@ public class AuthenwareConfig {
     public void setCORE_URL(String CORE_URL) {
         this.CORE_URL = CORE_URL;
     }
-    @Override
+    /**
+	 * @return the userValidation
+	 */
+	public boolean isUserValidation() {
+		return userValidation;
+	}
+
+	/**
+	 * @param userValidation the userValidation to set
+	 */
+	public void setUserValidation(boolean userValidation) {
+		this.userValidation = userValidation;
+	}
+
+	@Override
     public String toString(){
     	StringBuffer stringB = new StringBuffer();
     	stringB.append("Field:");

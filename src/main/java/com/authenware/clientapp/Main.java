@@ -3,6 +3,7 @@ package com.authenware.clientapp;
 import java.util.Optional;
 
 import model.AuthenwareConfig;
+import model.UsersDummy;
 
 import org.apache.catalina.startup.Tomcat;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -19,6 +20,10 @@ public class Main {
     	ac.setWRAP_URL(config.getString("WRAP_URL"));
     	ac.setApplication(config.getString("application"));
     	ac.setField(config.getString("field"));
+    	UsersDummy users = UsersDummy.getInstance();
+    	for (int x=1;x<=10;x++){
+    		users.addUser(config.getStringArray("user"+x));
+    	}
     	System.out.println(ac.toString());
 		String contextPath = "/";
         String appBase = ".";
