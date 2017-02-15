@@ -100,5 +100,19 @@ public class AuthenwareConfig {
     public void setCORE_URL(String CORE_URL) {
         this.CORE_URL = CORE_URL;
     }
-
+    @Override
+    public String toString(){
+    	StringBuffer stringB = new StringBuffer();
+    	stringB.append("Field:");
+    	stringB.append(field);
+    	stringB.append("\nApplication:");
+    	stringB.append(application);
+    	stringB.append("\nAPM_URL:");
+    	stringB.append(APM_URL);
+    	stringB.append("\nCORE_URL:");
+    	stringB.append(CORE_URL);
+    	stringB.append("\nWRAP_URL:");
+    	stringB.append(WRAP_URL);
+    	return stringB.toString();
+    }
 }
