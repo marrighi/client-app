@@ -28,13 +28,27 @@ public class UsersDummy {
        if (instance == null) instance = new UsersDummy();
        return instance;
    }
+   
+   public void listByConsole(){
+	   System.out.println("Users list:");
+	   for (Iterator<User> user = users.iterator(); user.hasNext();) {
+           User currentUser = (User) user.next();
+           System.out.println("User: "+currentUser.getUsername());
+       }
+   }
     
     public User getUser(String username){
     	
     	for (Iterator<User> user = users.iterator(); user.hasNext();) {
             User currentUser = (User) user.next();
-            if(username.equals(currentUser.getUsername() )) {
-                return currentUser;
+            if (AuthenwareConfig.getInstance().isCaseSensitive()){
+	            if(username.equals(currentUser.getUsername() )) {
+	                return currentUser;
+	            }
+            } else {
+            	if(username.equalsIgnoreCase(currentUser.getUsername() )) {
+	                return currentUser;
+	            }
             }
         }
     	// if it is not validating, then create a phantom user, so it can be found by the method if it not exist
@@ -72,5 +86,27 @@ public class UsersDummy {
     	System.out.println("Dummy User: "+ u.getUsername()+ " has been created");
     	return u;
     }
+
+    public boolean isAValidUser(String username, String password) {
+
+        if (AuthenwareConfig.getInstance().isUserValidation()){
+	    	for (Iterator<User> user = users.iterator(); user.hasNext();) {
+	            User current = (User) user.next();
+	            if (AuthenwareConfig.getInstance().isCaseSensitive()){
+		            if(username.equals(current.getUsername()) && password.endsWith(current.getPassword())) {
+		                return true;
+		            } 
+	            } else {
+	            	if(username.equalsIgnoreCase(current.getUsername()) && password.endsWith(current.getPassword())) {
+		                return true;
+		            }
+	            }
+	        }
+	    	return false;
+        } else {
+        	return true;
+        }
+    }
+
 
 }

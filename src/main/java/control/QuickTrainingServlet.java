@@ -97,7 +97,7 @@ public class QuickTrainingServlet extends HttpServlet {
              
 
         // Check if the information used to create the signature is correct 
-        if((!AuthenwareConfig.getInstance().isUserValidation()) || (userLogged.getUsername().equals(username) && userLogged.getPassword().equals(password)) ){
+        if(userLogged.matchesWithCurrentUser(username, password) ){
 
 
             // Collect the necessary signatures before call the createPattern service

@@ -19,6 +19,8 @@ public class AuthenwareConfig {
     private String CORE_URL;
     // If it's set to false, then you can write anything in user and password
     private boolean userValidation;
+    // if the username is caseSensitive or not
+    private boolean caseSensitive;
 
     public static AuthenwareConfig instance;
 
@@ -30,6 +32,7 @@ public class AuthenwareConfig {
           this.WRAP_URL = "http://192.168.1.119:8080/authenware-wrap/AuthenwareWrapService?wsdl";
           this.CORE_URL = "http://192.168.1.119:8080/authenware-core/AuthenwareCoreService?wsdl"; 
           this.userValidation = true;
+          this.caseSensitive = true;
           
     }
 
@@ -116,6 +119,20 @@ public class AuthenwareConfig {
 	 */
 	public void setUserValidation(boolean userValidation) {
 		this.userValidation = userValidation;
+	}
+
+	/**
+	 * @return the caseSensitive
+	 */
+	public boolean isCaseSensitive() {
+		return caseSensitive;
+	}
+
+	/**
+	 * @param caseSensitive the caseSensitive to set
+	 */
+	public void setCaseSensitive(boolean caseSensitive) {
+		this.caseSensitive = caseSensitive;
 	}
 
 	@Override

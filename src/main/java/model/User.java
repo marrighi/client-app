@@ -75,5 +75,23 @@ public class User {
     public void setCredentialLastSet(String credentialLastSet) {
         this.credentialLastSet = credentialLastSet;
     }
+    public boolean matchesWithCurrentUser (String username, String password){
+        if((!AuthenwareConfig.getInstance().isUserValidation())){
+        	return true;
+        }
+        if (AuthenwareConfig.getInstance().isCaseSensitive()){
+        	if (this.getUsername().equals(username) && this.getPassword().equals(password)) {
+        		return true;
+        	} else {
+        		return false;
+        	}
+        } else {
+        	if (this.getUsername().equalsIgnoreCase(username) && this.getPassword().equalsIgnoreCase(password)) {
+        		return true;
+        	} else {
+        		return false;
+        	}
+        }
+    }
 
 }

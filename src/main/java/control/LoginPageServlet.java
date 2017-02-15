@@ -9,16 +9,22 @@ package control;
 import com.authenware.apm.client.implementation.Message;
 import com.authenware.apm.client.implementation.Property;
 import com.authenware.apm.client.implementation.ValidateUserOut;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.manager.DummyProxySession;
+
+import model.AuthenwareConfig;
 import model.User;
 import model.UsersDummy;
 import services.APMServiceClient;
@@ -83,7 +89,10 @@ public class LoginPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
-
+        // Just for debug
+    	UsersDummy.getInstance().listByConsole();
+    	System.out.println("Validating users: "+AuthenwareConfig.getInstance().isUserValidation());
+    	
         // processRequest(request, response);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -103,10 +112,10 @@ public class LoginPageServlet extends HttpServlet {
 
         String isp = request.getRemoteHost();
 
-        Security security = new Security();
+        
 
         // Check if username and password are correct
-        if(security.isAValidUser(username, password)) {
+        if(UsersDummy.getInstance().isAValidUser(username, password)) {
             //The username and password are correct
 
             try {

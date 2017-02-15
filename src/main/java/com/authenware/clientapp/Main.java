@@ -27,7 +27,9 @@ public class Main {
     	System.out.println(ac.toString());
     	ac.setUserValidation((config.getString("uservalidation").equals("true")?true:false));
     	System.out.println((ac.isUserValidation()?"Users will be validated":"Users Will NOT be validated"));
-		String contextPath = "/";
+		ac.setCaseSensitive((config.getString("caseSensitive").equals("true")?true:false));
+		System.out.println((ac.isCaseSensitive()?"UserName will be case Sensitive":"UserName will NOT be case Sensitive"));
+    	String contextPath = "/";
         String appBase = ".";
         Tomcat tomcat = new Tomcat();     
         tomcat.setPort(Integer.valueOf(port.orElse("8060") ));
