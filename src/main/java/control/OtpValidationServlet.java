@@ -85,7 +85,6 @@ public class OtpValidationServlet extends HttpServlet {
             User user = (model.User) request.getSession().getAttribute("userLogged");
             String otpcode = request.getParameter("otpcode");
             Integer remainingSignatures = null;
-            // APM 1 // ValidateVerificationCodeOut answerValidateVerificationCode = APMServiceClient.getInstance().validateVerificationCode(user, otpcode);
             ValidateVerificationCodeOut answerValidateVerificationCode = APMServiceClient.getInstance().validateVerificationCode(user, otpcode);
             if (answerValidateVerificationCode.isResult()) {
                 int a = answerValidateVerificationCode.getNextAction().getCode();
@@ -120,8 +119,8 @@ public class OtpValidationServlet extends HttpServlet {
                         break;
                     case 7:
                         // Request user creates a new biometric pattern.
-                        request.getSession().setAttribute("remainingSignatures", 10);
-                        request.getSession().setAttribute("msg", "Please insert your data 10 more times");
+                        request.getSession().setAttribute("remainingSignatures", 5);
+                        request.getSession().setAttribute("msg", "Please insert your data 5 more times");
                         response.sendRedirect("createNewPatternQuestion.jsp");
                         break;
                     default:
@@ -131,10 +130,7 @@ public class OtpValidationServlet extends HttpServlet {
                         //String nextAction = validateVerificationCodeOut.getNextAction().getName();
                         //In this case there is only one form of training that the application will use; for this reason,
                         //any of the training actions will be treated in the same way.
-                        //String nextAction = validateVerificationCodeOut.getNextAction().getName();
-                        //In this case there is only one form of training that the application will use; for this reason,
-                        //any of the training actions will be treated in the same way.
-
+                        
                 }
             } else {
                     //Show errors

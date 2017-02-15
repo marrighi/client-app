@@ -14,7 +14,7 @@
     </head>
     <!-- body tag modified -->
     <body>
-        <h1>Welcome to our demo application</h1>
+        <h1></h1>
         <h2>Would you like to create a new pattern?</h2>
        
         <table>

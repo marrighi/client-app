@@ -186,7 +186,7 @@ public class QuickTrainingServlet extends HttpServlet {
 
 
         } else {
-            request.getSession().setAttribute("msg", "Your user name or password are wrong. Insert them again");
+            request.getSession().setAttribute("msg", "Your user name or password are wrong. Please enter them again");
             response.sendRedirect("quick.jsp");
 
         }

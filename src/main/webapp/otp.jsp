@@ -14,7 +14,7 @@
     </head>
     <!-- body tag modified -->
     <body>
-        <h1>Welcome to our demo application</h1>
+        <h1></h1>
         <h2>Please enter your access code (one time password)</h2>
         <form action="OtpValidationServlet" method="post">
         <table>
