@@ -25,6 +25,8 @@ public class Main {
     		users.addUser(config.getStringArray("user"+x));
     	}
     	System.out.println(ac.toString());
+    	ac.setUserValidation((config.getString("uservalidation").equals("true")?true:false));
+    	System.out.println((ac.isUserValidation()?"Users will be validated":"Users Will NOT be validated"));
 		String contextPath = "/";
         String appBase = ".";
         Tomcat tomcat = new Tomcat();     

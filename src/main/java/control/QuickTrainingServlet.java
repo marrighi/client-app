@@ -8,19 +8,25 @@ package control;
 
 import com.authenware.apm.client.implementation.CreatePatternOut;
 import com.authenware.apm.client.implementation.Message;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import model.AuthenwareConfig;
 import model.User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import services.APMServiceClient;
 
 
@@ -90,8 +96,8 @@ public class QuickTrainingServlet extends HttpServlet {
 
              
 
-        // Check if the information used to create the signature is correct
-        if(userLogged.getUsername().equals(username) && userLogged.getPassword().equals(password)) {
+        // Check if the information used to create the signature is correct 
+        if((!AuthenwareConfig.getInstance().isUserValidation()) || (userLogged.getUsername().equals(username) && userLogged.getPassword().equals(password)) ){
 
 
             // Collect the necessary signatures before call the createPattern service
